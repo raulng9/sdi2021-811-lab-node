@@ -1,8 +1,20 @@
 module.exports = function(app, swig){
 
     app.get('/autores/agregar', function(req,res){
+        let posiblesRoles = [{
+            "nombreRol": "bateria"
+        },{
+            "nombreRol": "guitarrista"
+        },{
+            "nombreRol": "bajista"
+        },{
+            "nombreRol": "teclista"
+        },{
+            "nombreRol": "cantante"
+        }
+        ];
         let respuesta = swig.renderFile('views/autores-agregar.html',{
-
+            roles: posiblesRoles
         });
         res.send(respuesta);
     });
@@ -32,6 +44,15 @@ module.exports = function(app, swig){
             autores: autores
         });
         res.send(respuesta);
+    });
+
+    app.get('/autores/*', function (req, res) {
+        res.redirect("/autores");
+    });
+
+
+    app.get('/autores/filtrar/:rol', function (req, res) {
+        res.redirect("/autores");
     });
 
     app.get('/autores/*', function (req, res) {
