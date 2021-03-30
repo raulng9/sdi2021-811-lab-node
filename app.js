@@ -13,6 +13,7 @@ app.set("port", 8081);
 
 require("./routes/rcanciones.js")(app,swig);
 require("./routes/rusuarios.js")(app,swig);
+require("./routes/rautores.js")(app,swig);
 
 app.listen(app.get("port"), function(){
    console.log("Servidor activo");

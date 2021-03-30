@@ -1,4 +1,12 @@
 module.exports = function(app, swig){
+
+    app.get('/canciones/agregar', function(req,res){
+        let respuesta = swig.renderFile('views/bagregar.html',{
+
+        });
+        res.send(respuesta);
+    });
+
   app.get("/canciones", function(req,res){
 
       let canciones = [{
@@ -19,12 +27,7 @@ module.exports = function(app, swig){
       res.send(respuesta);
   });
 
-  app.get('/canciones/agregar', function(req,res){
-     let respuesta = swig.renderFile('views/bagregar.html',{
 
-     });
-     res.send(respuesta);
-  });
 
   app.get('/canciones/:id', function(req, res) {
       let respuesta = 'id: ' + req.params.id;
