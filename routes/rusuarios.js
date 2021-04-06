@@ -40,16 +40,15 @@ module.exports = function(app, swig, gestorBD){
                 res.send("No identificado: ");
             } else {
                 req.session.usuario = usuarios[0].email;
-                res.send("Identificado");
+                res.redirect("/tienda");
             }
         });
 
     });
 
-
     app.get('/desconectarse', function (req, res) {
         req.session.usuario = null;
-        res.send("Usuario desconectado");
+        res.redirect("/identificarse");
     })
 
 
