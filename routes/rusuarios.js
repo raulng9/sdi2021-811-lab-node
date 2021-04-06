@@ -1,4 +1,8 @@
 module.exports = function(app, swig, gestorBD){
+    app.get("/", function(req,res){
+        res.redirect("/identificarse");
+    });
+
     app.get("/usuarios", function(req,res){
         res.send("ver usuarios");
     });

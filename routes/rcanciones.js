@@ -68,7 +68,7 @@ module.exports = function(app, swig, gestorBD){
               res.send("Error al insertar canción");
           } else {
               if (req.files.portada != null) {
-                  var imagen = req.files.portada;
+                  let imagen = req.files.portada;
                   imagen.mv('public/portadas/' + id + '.png', function(err) {
                       if (err) {
                           res.send("Error al subir la portada");
@@ -156,7 +156,7 @@ module.exports = function(app, swig, gestorBD){
             if ( canciones == null ){
                 res.send(respuesta);
             } else {
-                var respuesta = swig.renderFile('views/bcancionModificar.html',
+                let respuesta = swig.renderFile('views/bcancionModificar.html',
                     {
                         cancion : canciones[0]
                     });

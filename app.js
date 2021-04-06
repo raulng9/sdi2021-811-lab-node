@@ -56,9 +56,28 @@ routerAudios.use(function(req, res, next) {
           }
        })
 });
-
 //Aplicar routerAudios
 app.use("/audios/",routerAudios);
+
+
+//routerUsuarioAutorComentario
+let routerUsuarioAutorComentario = express.Router();
+routerUsuarioAutorComentario.use(function(req, res, next) {
+   console.log("routerUsuarioAutorComentario");
+   let path = require('path');
+   let id = path.basename(req.originalUrl);
+   gestorBD.obtenerComentarios(
+       {_id: mongo.ObjectID(id) }, function (comentarios) {
+          if(comentarios[0].autor === req.session.usuario ){
+              next();
+          } else {
+              res.send("No eres el autor de este comentario");
+          }
+       })
+});
+//Aplicar routerUsuarioAutorComentario
+app.use("/comentario/borrar",routerUsuarioAutorComentario);
+
 
 
 app.use(express.static("public"));

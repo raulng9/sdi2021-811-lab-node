@@ -9,7 +9,7 @@ module.exports = {
             if (err) {
                 funcionCallback(null);
             } else {
-                var collection = db.collection('canciones');
+                let collection = db.collection('canciones');
                 collection.insertOne(cancion, function(err, result) {
                     if (err) {
                         funcionCallback(null);
@@ -77,7 +77,7 @@ module.exports = {
             if (err) {
                 funcionCallback(null);
             } else {
-                var collection = db.collection('usuarios');
+                let collection = db.collection('usuarios');
                 collection.find(criterio).toArray(function(err, usuarios) {
                     if (err) {
                         funcionCallback(null);
@@ -113,6 +113,23 @@ module.exports = {
             } else {
                 let collection = db.collection('canciones');
                 collection.updateOne(criterio, {$set: cancion}, function(err, result) {
+                    if (err) {
+                        funcionCallback(null);
+                    } else {
+                        funcionCallback(result);
+                    }
+                    db.close();
+                });
+            }
+        });
+    },
+    eliminarComentario : function(criterio, funcionCallback) {
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                let collection = db.collection('comentarios');
+                collection.remove(criterio, function(err, result) {
                     if (err) {
                         funcionCallback(null);
                     } else {
