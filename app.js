@@ -111,6 +111,11 @@ require("./routes/rusuarios.js")(app,swig,gestorBD);
 require("./routes/rcomentarios.js")(app, swig,gestorBD);
 require("./routes/rautores.js")(app,swig);
 
+//Redirección a la tienda por defecto
+app.get('/', function(req,res){
+    res.redirect('/tienda');
+});
+
 app.listen(app.get("port"), function(){
    console.log("Servidor activo");
 });
