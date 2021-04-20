@@ -41,11 +41,11 @@
             success: function(respuesta) {
                 console.log(respuesta); // <-- Prueba
                 $( "#contenedor-principal" ).load( "widget-canciones.html");
-
             },
             error : function (error){
-                $('#div-alert-danger').show();
-                $('#div-alert-danger').text('Error: ' + error.responseJSON.error);
+                let errorDiv = $('#error-container')
+                errorDiv.show();
+                errorDiv.text('Error: ' + error.responseJSON.error);
             }
         });
     }

@@ -32,6 +32,9 @@
   </div>
 </nav>
 
+<div id="error-container">
+
+</div>
 
 <!-- Contenido -->
 <div class="container" id="contenedor-principal"> <!--  id para identificar -->
@@ -44,18 +47,18 @@
       token = Cookies.get('token');
       let url = new URL(window.location.href);
       let w = url.searchParams.get("w");
-      if ( w == "login"){
+      if ( w === "login"){
         $( "#contenedor-principal" ).load("widget-login.html");
       }
-      if ( w == "canciones"){
+      if ( w === "canciones"){
         $( "#contenedor-principal" ).load("widget-canciones.html");
       }
     }
 
-
     function widgetCanciones(){
       $( "#contenedor-principal" ).load( "widget-canciones.html");
     }
+    $("div#error-container").hide();
   </script>
 </div>
 
